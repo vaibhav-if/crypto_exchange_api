@@ -1,24 +1,10 @@
-# README
+# crypto_exchange_api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Link to [API Endpoints](https://documenter.getpostman.com/view/17097842/2sAY52cefT)
 
-Things you may want to cover:
+# Steps to run the app
+* run `bundle install`
+* run `rails db:migrate`
+* run `rails s`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Server runs on port 3000
