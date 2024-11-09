@@ -7,6 +7,7 @@ class JsonWebToken
   end
 
   def self.decode(token)
+    token = token.split(" ").last
     JWT.decode(token, SECRET_KEY)[0]["user_id"]
   rescue JWT::DecodeError
     nil

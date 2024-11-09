@@ -12,6 +12,11 @@ Rails.application.routes.draw do
       # Users
       post "users/signup", to: "users#signup"
       post "users/login", to: "users#login"
+
+      # wallets
+      post "/wallets/deposit", to: "wallets#deposit"
+      post "/wallets/withdrawal", to: "wallets#withdrawal"
+      get "/wallets/balances", to: "wallets#balances"
     end
   end
 end

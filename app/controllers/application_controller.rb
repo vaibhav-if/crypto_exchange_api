@@ -5,6 +5,6 @@ class ApplicationController < ActionController::API
 
   private
   def current_user
-    @current_user ||= User.find(JsonWebToken.decode_token(request.headers["Authorization"]))
+    @current_user ||= User.find(JsonWebToken.decode(request.headers["Authorization"]))
   end
 end

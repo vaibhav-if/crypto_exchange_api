@@ -1,6 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-  # skip_before_action :authorize_request, only: [ :signup, :login ]
-
   def signup
     @user = User.new(user_params)
     if @user.save
