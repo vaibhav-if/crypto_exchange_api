@@ -17,6 +17,13 @@ Rails.application.routes.draw do
       post "/wallets/deposit", to: "wallets#deposit"
       post "/wallets/withdrawal", to: "wallets#withdrawal"
       get "/wallets/balances", to: "wallets#balances"
+
+      # orders
+      post "/orders/create", to: "orders#create"
+      put "/orders/cancel", to: "orders#cancel"
+
+      # dashboards
+      get "/dashboards/index", to: "dashboards#index"
     end
   end
 end

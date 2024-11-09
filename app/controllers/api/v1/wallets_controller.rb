@@ -3,10 +3,14 @@ class Api::V1::WalletsController < ApplicationController
 
   def deposit
     wallet = current_user.wallets.find_or_create_by(currency: params[:currency])
-    wallet.balance += params[:amount].to_d
-    if wallet.save
-      render json: { status: "success", msg: "Successfully deposited funds", payload: { balance: wallet.balance, currency: wallet.currency }
-      }, status: :ok
+    if params[:amount].to_d > 0.0
+      wallet.balance += params[:amount].to_d
+      if wallet.save
+        render json: { status: "success", msg: "Successfully deposited funds", payload: { balance: wallet.balance, currency: wallet.currency }
+        }, status: :ok
+      else
+        render json: { status: "error", msg: "Error depositing funds" }, status: :unprocessable_entity
+      end
     else
       render json: { status: "error", msg: "Error depositing funds" }, status: :unprocessable_entity
     end
@@ -14,7 +18,7 @@ class Api::V1::WalletsController < ApplicationController
 
   def withdrawal
     wallet = current_user.wallets.find_by(currency: params[:currency])
-    if wallet && wallet.balance >= params[:amount].to_d
+    if params[:amount].to_d > 0.0 && wallet && wallet.balance >= params[:amount].to_d
       wallet.balance -= params[:amount].to_d
       if wallet.save
         render json: { status: "success", msg: "Successfully withdrawn funds", payload: { balance: wallet.balance, currency: wallet.currency }
